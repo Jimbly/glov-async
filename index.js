@@ -60,7 +60,7 @@ function eachLimit(arr, limit, proc, done) {
       done(any_err, results);
     } else if (next < len) {
       let key = next++;
-      proc(arr[key], doNext.bind(null, key));
+      proc(arr[key], doNext.bind(null, key), idx);
     }
   }
 
@@ -70,7 +70,7 @@ function eachLimit(arr, limit, proc, done) {
   }
   next = limit;
   for (let ii = 0; ii < arr.length && ii < limit; ++ii) {
-    proc(arr[ii], doNext.bind(null, ii));
+    proc(arr[ii], doNext.bind(null, ii), ii);
   }
 }
 exports.eachLimit = eachLimit;
@@ -79,6 +79,11 @@ function each(arr, proc, done) {
   eachLimit(arr, Infinity, proc, done);
 }
 exports.each = each;
+
+function eachSeries(arr, proc, done) {
+  eachLimit(arr, 1, proc, done);
+}
+exports.eachSeries = eachSeries;
 
 function parallelLimit(tasks, limit, done) {
   eachLimit(tasks, limit, function (task, next) {
