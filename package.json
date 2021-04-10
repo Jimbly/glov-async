@@ -1,8 +1,12 @@
 {
-  "name": "glovjs-async",
-  "version": "0.0.4",
+  "name": "glov-async",
+  "version": "0.0.1",
   "description": "GLOV.js Async Utility Library",
   "main": "index.js",
+  "keywords": [
+    "glov",
+    "glovjs"
+  ],
   "author": "Jimb Esser (https://github.com/Jimbly)",
   "repository": {
     "type": "git",
