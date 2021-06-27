@@ -7,9 +7,9 @@ Behavioral differences from other similar libraries:
 
 Example API usage (admittedly will all actually run synchronously):
 ```javascript
-const { asyncEach, asyncEachLimit, asyncParallel, asyncParallelLimit, asyncLimiter } = require('glovjs-async');
+const { asyncEach, asyncEachLimit, asyncParallel, asyncParallelLimit, asyncLimiter } = require('glov-async');
 // Also valid:
-//  const async = require('glovjs-async');
+//  const async = require('glov-async');
 //  async.each(...), etc
 
 let collection = ['foo', 'bar'];
