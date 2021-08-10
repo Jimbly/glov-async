@@ -16,9 +16,9 @@ let collection = ['foo', 'bar'];
 
 asyncEach(collection, function (thing, next) {
   console.log(thing);
-  next();
-}, function (err) {
-  console.log('Done');
+  next(null, 'baz');
+}, function (err, results) {
+  console.log('Done', results); // prints Done ['baz', 'baz']
 });
 
 asyncEachLimit(collection, 1, function (thing, next) {
