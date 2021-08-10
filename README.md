@@ -3,7 +3,7 @@ GLOV.js async utility library
 
 Behavioral differences from other similar libraries:
 * Never forces setTimeout/nextTick, so empty lists or synchronous tasks are optimally efficient, creating no inter-generational garbage.
-* All parallel async functions (each, eachLimit, parallel, parallelLimit) process every entry and do not return to the final function until all processing is complete, even if some entry errors before then.  This avoids terrible edge-case bugs where the calling code things an asynchronous batch has finished executing (because one part of the batch terminated with error), yet some children are still running.
+* All parallel async functions (each, eachLimit, parallel, parallelLimit) process every entry and do not return to the final function until all processing is complete, even if some entry errors before then.  This avoids terrible edge-case bugs where the calling code thinks an asynchronous batch has finished executing (because one part of the batch terminated with error), yet some children are still running.
 
 Example API usage (admittedly will all actually run synchronously):
 ```javascript
