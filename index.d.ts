@@ -51,5 +51,5 @@ export type LimitedRun<V, E=ErrorType> = (
 ) => void;
 
 export function asyncLimiter(
-  max_parallel: number
+  limit: number
 ): LimitedRun;

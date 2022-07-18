@@ -97,8 +97,8 @@ function parallel(tasks, done) {
 }
 exports.parallel = parallel;
 
-function limiter(max_parallel) {
-  let avail = max_parallel;
+function limiter(limit) {
+  let avail = limit;
   let head = null;
   let tail = null;
   function onFinish() {
