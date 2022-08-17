@@ -9,7 +9,7 @@ export type ContinuationWithResult<R, E = ErrorType> = (err?: E | null, result?:
 
 export type AsyncResultArrayCallback<R, E = ErrorType> = (err?: E | null, result?: Array<R | undefined>) => void;
 
-export type AsyncIterator<T, R, E = ErrorType> = (item: T, next: ContinuationWithResult<R, E>) => void;
+export type AsyncIterator<T, R, E = ErrorType> = (item: T, next: ContinuationWithResult<R, E>, index: number) => void;
 
 export type AsyncFunction<E = ErrorType> = (callback: Continuation<E>) =>  void;
 
