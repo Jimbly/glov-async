@@ -66,14 +66,14 @@ function returnsString(next: (err: null, result: string) => void) {
 }
 let limiter2 = asyncLimiter(1);
 limiter2(returnsNumber);
-(limiter2 as LimitedRun<[number]>)(returnsNumber, function (err, result: number) : void {
+limiter2(returnsNumber, function (err, result: number) : void {
   console.log('Task 1 finished', result);
 });
-(limiter2 as LimitedRun<[string]>)(returnsString, function (err, result: string) : void {
+limiter2(returnsString, function (err, result: string) : void {
   console.log('Task 2 finished', result);
 });
 
-// These are wrong, should throw TypeScript error, but don't:
+// These are wrong, should throw TypeScript error
 limiter2(returnsNumber, function (err, result: string) : void {
   console.log('Task 1 finished', result);
 });

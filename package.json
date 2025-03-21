@@ -1,6 +1,6 @@
 {
   "name": "glov-async",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GLOV.js Async Utility Library",
   "main": "index.js",
   "types": "index.d.ts",
