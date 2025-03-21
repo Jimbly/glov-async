@@ -42,14 +42,14 @@ export function asyncEachSeries<T, R = void, E = ErrorType>(
 ): void;
 
 
-export type ContinuationVArg<V, E = ErrorType> = (err?: E | null, ...args: V) => void;
-export type AsyncVArgFunction<V, E = ErrorType> = (done: ContinuationVArg<V, E>) =>  void;
+export type ContinuationVArg<V extends [], E = ErrorType> = (err?: E | null, ...args: V) => void;
+export type AsyncVArgFunction<V extends [], E = ErrorType> = (done: ContinuationVArg<V, E>) =>  void;
 
-export type LimitedRun<V, E=ErrorType> = (
+export type LimitedRun<V extends [], E=ErrorType> = (
   task: AsyncVArgFunction<V, E>,
   done?: ContinuationVArg<V, E>
 ) => void;
 
-export function asyncLimiter(
+export function asyncLimiter<V extends [], E=ErrorType>(
   limit: number
-): LimitedRun;
+): LimitedRun<V, E>;

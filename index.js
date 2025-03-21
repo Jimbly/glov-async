@@ -56,7 +56,7 @@ function eachLimit(arr, limit, proc, done) {
     while (next !== len && in_flight < limit) {
       let key = next++;
       ++in_flight;
-      proc(arr[key], doNext.bind(null, key), key);
+      proc(arr[key], doNext.bind(null, key), key); // eslint-disable-line no-use-before-define
     }
     if (!pending) {
       done(any_err, results);
