@@ -107,26 +107,31 @@ function limiter(limit) {
   let avail = limit;
   let head = null;
   let tail = null;
+  let is_sync = false;
   function onFinish() {
-    if (!head) {
-      ++avail;
-      return;
+    ++avail;
+    if (!is_sync) {
+      dispatch(); // eslint-disable-line no-use-before-define
     }
-    let next = head;
-    head = head.next;
-    if (!head) {
-      tail = null;
-    }
-    runit(next); // eslint-disable-line no-use-before-define
   }
-  function runit(unit) {
-    if (unit.cb) {
-      unit.exec(function (...args) {
-        unit.cb(...args);
-        onFinish();
-      });
-    } else {
-      unit.exec(onFinish);
+  function dispatch() {
+    while (avail && head) {
+      --avail;
+      let unit = head;
+      head = head.next;
+      if (!head) {
+        tail = null;
+      }
+      is_sync = true;
+      if (unit.cb) {
+        unit.exec(function (...args) {
+          unit.cb(...args);
+          onFinish();
+        });
+      } else {
+        unit.exec(onFinish);
+      }
+      is_sync = false;
     }
   }
   return function limiterRun(exec, cb) {
@@ -134,17 +139,15 @@ function limiter(limit) {
       exec,
       cb,
     };
-    if (!avail) {
-      if (!head) {
-        head = tail = unit;
-      } else {
-        tail.next = unit;
-        tail = unit;
-      }
-      return;
+    if (!head) {
+      head = tail = unit;
+    } else {
+      tail.next = unit;
+      tail = unit;
     }
-    --avail;
-    runit(unit);
+    if (!is_sync) {
+      dispatch();
+    }
   };
 }
 exports.limiter = limiter;
