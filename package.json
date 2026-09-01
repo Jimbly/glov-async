@@ -1,6 +1,6 @@
 {
   "name": "glov-async",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "GLOV.js Async Utility Library",
   "main": "index.js",
   "types": "index.d.ts",
@@ -8,10 +8,14 @@
     "glov",
     "glovjs"
   ],
+  "scripts": {
+    "test": "true || cd ."
+  },
   "author": "Jimb Esser (https://github.com/Jimbly)",
+  "homepage": "https://github.com/Jimbly/glov-async#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Jimbly/glovjs-async.git"
+    "url": "git+https://github.com/Jimbly/npm-publish.git"
   },
   "license": "MIT",
   "dependencies": {},
